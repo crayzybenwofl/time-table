@@ -1,0 +1,5 @@
+{
+  "name": "Time Table Management System",
+  "description": "A comprehensive web-based system for managing and viewing class schedules for students, teachers, and administrators.",
+  "requestFramePermissions": []
+}

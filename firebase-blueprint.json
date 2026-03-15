@@ -1,0 +1,72 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information and role.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "teacher", "student"] }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Course": {
+      "title": "Course",
+      "description": "Subject or course information.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "teacherId": { "type": "string", "description": "UID of the teacher" },
+        "teacherName": { "type": "string" }
+      },
+      "required": ["name", "teacherId"]
+    },
+    "Class": {
+      "title": "Class",
+      "description": "Class or group of students.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "studentCount": { "type": "integer" }
+      },
+      "required": ["name"]
+    },
+    "TimetableEntry": {
+      "title": "Timetable Entry",
+      "description": "A single slot in the timetable.",
+      "type": "object",
+      "properties": {
+        "courseId": { "type": "string" },
+        "courseName": { "type": "string" },
+        "classId": { "type": "string" },
+        "className": { "type": "string" },
+        "teacherId": { "type": "string" },
+        "dayOfWeek": { "type": "string", "enum": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] },
+        "startTime": { "type": "string", "description": "HH:mm format" },
+        "endTime": { "type": "string", "description": "HH:mm format" },
+        "room": { "type": "string" }
+      },
+      "required": ["courseId", "classId", "dayOfWeek", "startTime", "endTime", "room"]
+    }
+  },
+  "firestore": {
+    "users": {
+      "schema": "User",
+      "description": "Collection of user profiles."
+    },
+    "courses": {
+      "schema": "Course",
+      "description": "Collection of available courses."
+    },
+    "classes": {
+      "schema": "Class",
+      "description": "Collection of classes."
+    },
+    "timetable": {
+      "schema": "TimetableEntry",
+      "description": "Collection of timetable entries."
+    }
+  }
+}
